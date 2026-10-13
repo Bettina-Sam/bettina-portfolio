@@ -50,4 +50,4 @@ After changing files, bump `CACHE` in `sw.js` (`betty-v1` → `betty-v2`) so ret
 
 ## If your Vercel URL is different
 
-Search `index.html` for `https://bettina-portfolio.vercel.app` and replace it with your real URL (3 places: og:image, og:url, canonical). Do the same in `robots.txt` and `sitemap.xml`.
+Search `index.html` for `https://bettina-portfolio.netlify.app` and replace it with your real URL (3 places: og:image, og:url, canonical). Do the same in `robots.txt` and `sitemap.xml`.
