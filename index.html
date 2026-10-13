@@ -1,0 +1,252 @@
+<!doctype html>
+<!--
+  Bettina Anne Sam — portfolio
+  Plain HTML/CSS/JS. No build step.
+  Structure: css/styles.css · js/icons.js (brand logos) · js/main.js (everything that moves)
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Betty (Bettina Anne Sam) — full-stack and ML engineer</title>
+<meta name="description" content="Bettina Anne Sam builds interactive web apps, 3D experiments and machine learning platforms. Final-year B.Tech IT at FXEC.">
+<meta name="theme-color" content="#2340FF">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icons/logo.svg">
+<link rel="alternate icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Betty">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bettina Anne Sam — full-stack and ML engineer">
+<meta property="og:description" content="UAV flight analysis at DRDO, gesture-driven 3D, real-time disaster maps, AI voice agents, and a lot of paper planes. Come play.">
+<meta property="og:image" content="https://bettina-portfolio.vercel.app/assets/og-image.png">
+<meta property="og:url" content="https://bettina-portfolio.vercel.app/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://bettina-portfolio.vercel.app/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,200..800&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body class="loading">
+<div id="loader" role="status" aria-label="Loading">
+  <div class="lhalf top"></div><div class="lhalf bot"></div>
+  <div class="lstage">
+    <div class="ltop"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="96" height="96" rx="24" fill="#2340FF"/><path fill="#fff" fill-rule="evenodd" d="M24 20 H54 C68 20 76 28 76 39 C76 46 72.5 51 67 53.5 C75 56 80.5 63 80.5 72 C80.5 85 71 92 56 92 H24 Z M38 32 H52 C58.5 32 62 35 62 39.8 C62 44.6 58.5 47.5 52 47.5 H38 Z M38 59 H54 C62 59 66.5 62.6 66.5 68.6 C66.5 74.8 62 78.5 54 78.5 H38 Z"/><g transform="translate(64 6) rotate(-18) scale(.72)"><path d="M0 3 L40 15 L13 17 Z" fill="#FFC93C"/><path d="M13 17 L40 15 L9 27 Z" fill="#E0A814"/></g></svg><span>Bettina Anne Sam</span></div>
+    <div class="lcenter"><div class="hello-wrap"><div class="hello" id="hello">Hello</div><div class="hlang" id="hlang">English</div></div></div>
+    <div class="lname" aria-hidden="true"><div class="im">Hi, I'm</div><span class="ln ln1" data-t="Bettina"></span><span class="ln ln2" data-t="Anne Sam"></span></div>
+    <div class="lfoot"><b id="pct">0</b><span>%</span><span class="lbar"><i id="lbar"></i></span><span id="lmsg">saying hi to the world</span></div>
+  </div>
+</div>
+<canvas id="trailc" aria-hidden="true"></canvas>
+<div id="sp" aria-hidden="true"><canvas id="spc"></canvas><div id="spp"><svg viewBox="0 0 40 30"><path d="M0 3 L40 15 L13 17 Z" fill="#FFC93C"/><path d="M13 17 L40 15 L9 27 Z" fill="#E0A814"/><path d="M13 17 L9 27 L11 19 Z" fill="#16181D" opacity=".35"/></svg></div></div>
+<div id="pc" aria-hidden="true"><div class="inner"><svg viewBox="0 0 40 30"><path d="M0 3 L40 15 L13 17 Z" fill="#2340FF"/><path d="M13 17 L40 15 L9 27 Z" fill="#1A2FC0"/><path d="M13 17 L9 27 L11 19 Z" fill="#16181D" opacity=".4"/><path d="M0 3 L40 15" stroke="#fff" stroke-width="1" opacity=".6"/></svg></div></div>
+<div id="clabel"></div>
+<div id="flies" aria-hidden="true"></div>
+<div id="cord"><div class="line"></div><button class="knob" id="knob" aria-label="Pull to switch between light and dark"><svg viewBox="0 0 30 40"><path d="M15 2 C 6 2, 2 9, 2 15 C 2 21, 7 24, 9 29 L 21 29 C 23 24, 28 21, 28 15 C 28 9, 24 2, 15 2Z" class="bulb"/><rect x="9" y="30" width="12" height="4" rx="1.5" fill="#8A8E98"/><rect x="10" y="35" width="10" height="3" rx="1.5" fill="#8A8E98"/></svg></button><span class="pullme">pull me</span></div>
+<div id="toast" role="status"></div>
+<div id="caught" aria-live="polite">✈️ caught <b>0</b></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <h1 class="sr">Bettina Anne Sam, full-stack and machine learning engineer</h1>
+  <div class="hero-name" aria-hidden="true"><span class="l1">Bettina</span><span class="l2">Anne Sam</span></div>
+  <div class="hero-figure" id="heroFig"><img id="heroImg" alt="Bettina, arms crossed, in a white shirt"></div>
+  <div class="halo" id="halo" aria-hidden="true"><div class="disc"></div><div class="ring r1"><span class="orb-i" data-k="react"></span><span class="orb-i" data-k="python"></span><span class="orb-i" data-k="threedotjs"></span></div><div class="ring r2"><span class="orb-i" data-k="nodedotjs"></span><span class="orb-i" data-k="typescript"></span><span class="orb-i" data-k="fastapi"></span><span class="orb-i" data-k="mongodb"></span></div><div class="ring r3"><span class="orb-i" data-k="github"></span><span class="orb-i" data-k="selenium"></span><span class="orb-i" data-k="git"></span></div></div>
+  <div class="badges" id="badges" aria-hidden="true">
+    <span class="badge b1" style="--n:0"><span class="bob" style="--tw:-2deg">ML intern <b>DRDO '26</b></span></span>
+    <span class="badge b2" style="--n:1"><span class="bob"><b>9.64</b>CGPA</span></span>
+    <span class="badge b3" style="--n:2"><span class="bob" style="--tw:-3deg">first prizes <b>5×</b></span></span>
+    <span class="badge b4" style="--n:3"><span class="bob"><b>10+</b>live projects</span></span>
+  </div>
+  <div class="hero-copy">
+    <div class="hero-aside">
+    <span class="pill"><span class="live-dot"></span>Intern at NSS right now</span>
+    <span class="pill vis-hide" data-visits-pill><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span data-visits>0</span> visits</span>
+    <a class="pill" href="https://github.com/Bettina-Sam" target="_blank" rel="noopener" data-cursor="GitHub"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>Bettina-Sam</a>
+    <a class="pill" href="https://linkedin.com/in/bettina-anne-sam-76251b288" target="_blank" rel="noopener" data-cursor="LinkedIn"><svg viewBox="0 0 24 24"><path fill="#0A66C2" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+    <a class="pill install-btn" href="#" data-cursor="Install"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7M9 11l3 3 3-3"/></svg>Install app</a>
+    </div>
+    <span class="hi">Hi, I'm Betty!</span>
+    <p class="lede">I'm a full-stack and ML engineer who likes building things you can actually play with: web apps, 3D experiments, machine learning platforms, and the occasional gloriously silly idea.</p>
+    <div class="roles" aria-live="polite"><span class="r on">Full-stack developer</span><span class="r">Machine learning engineer</span><span class="r">AI automation engineer</span><span class="r">Three.js tinkerer</span><span class="r">Professional bug hunter</span></div>
+    <div class="actions">
+      <a class="btn solid mag" href="#work">See what I've made</a>
+      <a class="btn mag resume-dl" href="#" data-cursor="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg>Résumé</a>
+    </div>
+
+  </div>
+</header>
+
+<div class="marq" data-speed="1"><div class="track"><span>Build it</span><span>Break it</span><span>Fix it</span><span>Ship it</span><span>Play with it</span><span>Build it</span><span>Break it</span><span>Fix it</span><span>Ship it</span><span>Play with it</span></div></div>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="about">
+  <div class="wrap about-grid above">
+    <div>
+      <h2 class="split">Nice to meet you.</h2>
+      <div class="body">
+        <p class="rv">I'm Bettina, but almost everyone calls me Betty. I'm in my final year of B.Tech IT at Francis Xavier Engineering College, and I've spent most of college building real things alongside my classes.</p>
+        <p class="rv" style="--d:.08s">Two and a half years as an assistant software engineer at Rotation 5. A summer as an ML intern at DRDO, building a platform for UAV flight analysis. And right now, automation engineering at Nellai System and Services, where I'm building an AI voice agent that answers customer-support calls, until I graduate.</p>
+        <p class="rv" style="--d:.16s">I learn best when I can touch something. So when I get an idea, I don't leave it in a notebook. I turn it into something you can click, drag, scroll or wave at. Like this page. Go on, poke around.</p>
+      </div>
+      <div class="stats">
+        <div class="stat rv"><b data-count="9.64" data-dec="2">0</b><span>CGPA in B.Tech IT</span></div>
+        <div class="stat rv" style="--d:.08s"><b data-count="1000" data-plus="1">0</b><span>automated tests written</span></div>
+        <div class="stat rv" style="--d:.16s"><b data-count="1000" data-plus="1">0</b><span>problems solved on SkillRack</span></div>
+        <div class="stat rv" style="--d:.24s"><b data-count="28">0</b><span>certificates and counting</span></div>
+      </div>
+    </div>
+    <div class="side">
+      <div class="sbox rv"><h3><span class="live-dot"></span>Right now</h3><p>Automation engineering intern at Nellai System and Services, building an AI voice agent for customer support. Until I graduate.</p></div>
+      <div class="sbox rv" style="--d:.08s"><h3>Open to</h3><p>Full-time roles and internships in full-stack and ML, from 2027.</p></div>
+      <div class="sbox blue rv" style="--d:.16s"><h3>Want the one-page version?</h3><p>Everything here, squeezed onto a single page.</p><a class="btn resume-dl" href="#" data-cursor="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg>Download my résumé</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WORK ================= -->
+<section class="work" id="work">
+  <div class="wrap above">
+    <h2 class="sec-title split">Things I've made</h2>
+    <p class="sec-sub rv">Eleven projects, all live. Play with the previews, open the sites, peek at the code.</p>
+    <div class="filters rv" id="pFilters" aria-label="Filter projects"></div>
+    <div class="grid" id="grid"></div>
+    <div class="more-wrap" id="moreWrap"><button class="btn mag" id="moreBtn"><span id="moreTxt">See 2 more</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+    <p class="more-note">Everything else lives on <a href="https://github.com/Bettina-Sam" target="_blank" rel="noopener">my GitHub</a>.</p>
+  </div>
+</section>
+
+<div class="marq alt" data-speed="-1"><div class="track"><span>React</span><span>Three.js</span><span>FastAPI</span><span>Node.js</span><span>Python</span><span>MediaPipe</span><span>WebSockets</span><span>TypeScript</span><span>React</span><span>Three.js</span><span>FastAPI</span><span>Node.js</span><span>Python</span><span>MediaPipe</span><span>WebSockets</span><span>TypeScript</span></div></div>
+
+<!-- ================= JOURNEY ================= -->
+<section class="journey" id="journey">
+  <div class="wrap above">
+    <h2 class="sec-title split">How I got here</h2>
+    <p class="sec-sub rv">My story as a game. Scroll to play: the butterfly follows the road and every level unlocks something new.</p>
+    <div class="hud" id="hud"><span class="lvl" id="hudLvl">LV 1</span><div class="what"><b id="hudWhat">Francis Xavier School</b><div class="xp"><i id="hudXp"></i></div></div><span class="xpn" id="hudXpn">0 XP</span><span class="score" id="hudScore">🏆 <b>0</b></span></div>
+    <div class="road" id="road">
+      <svg class="path" id="roadSvg" aria-hidden="true"><path id="roadBg" fill="none" stroke="rgba(237,236,232,.14)" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/><path id="roadFg" fill="none" stroke="url(#rg)" stroke-width="4" stroke-linecap="round"/><defs><linearGradient id="rg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#7389FF"/><stop offset="1" stop-color="#20C46B"/></linearGradient></defs></svg>
+      <div class="marker" id="marker"><svg viewBox="0 0 34 30"><g class="wl"><path d="M17 14 C 12 2, 1 1, 2 9 C 3 14, 10 15, 17 15 C 10 16, 4 21, 7 26 C 10 30, 16 23, 17 17Z" fill="#7389FF"/></g><g class="wr"><path d="M17 14 C 22 2, 33 1, 32 9 C 31 14, 24 15, 17 15 C 24 16, 30 21, 27 26 C 24 30, 18 23, 17 17Z" fill="#20C46B"/></g><rect x="16" y="9" width="2" height="13" rx="1" fill="#EDECE8"/></svg></div>
+      <div class="lv L" data-lvl="1"><span class="node"></span><div class="mem" aria-hidden="true"><div class="bigyr">2020</div><div class="mstuff" style="--r:-6deg"><div class="mnote">CBSE done:<br>89.8% then 81.8%</div></div><span class="coin" style="left:8%;top:62%;animation-delay:0.0s">📚</span><span class="coin" style="left:78%;top:14%;animation-delay:-0.7s">⭐</span></div><div class="lvcard"><div class="top"><span class="lv-n">LEVEL 1</span><span class="yr">2020 – 2023</span></div><h3>Francis Xavier School</h3><div class="org">CBSE</div><p>89.8% in Class 10 and 81.8% in Class 12. The tutorial level.</p><div class="unlock"><span>unlocked:</span><i style="--k:0">Science stream</i><i style="--k:1">Maths</i></div></div></div>
+      <div class="lv R" data-lvl="2"><span class="node"></span><div class="mem" aria-hidden="true"><div class="bigyr">2023</div><div class="mstuff" style="--r:-7deg"><figure class="mpol"><span class="tape" style="--tc:rgba(130,230,180,.8);--tr:-5deg"></span><img data-ph="podium" alt=""><figcaption>Podium 1.0, first year!</figcaption></figure></div><span class="coin" style="left:8%;top:62%;animation-delay:0.0s">🏆</span><span class="coin" style="left:78%;top:14%;animation-delay:-0.7s">💡</span></div><div class="lvcard"><div class="top"><span class="lv-n">LEVEL 2</span><span class="yr">2023</span></div><h3>Started B.Tech IT</h3><div class="org">Francis Xavier Engineering College</div><p>Data structures, databases and networks, a CGPA I've kept at 9.64, and first place at Podium 1.0 in my very first year.</p><div class="unlock"><span>unlocked:</span><i style="--k:0">Java</i><i style="--k:1">C</i><i style="--k:2">Python</i><i style="--k:3">DSA</i><i style="--k:4">Podium 1.0 trophy</i></div></div></div>
+      <div class="lv L" data-lvl="3"><span class="node"></span><div class="mem" aria-hidden="true"><div class="bigyr">2024</div><div class="mstuff" style="--r:5deg"><div class="mnote">1000+ tests ✓✓✓<br>bugs squashed: lots</div></div><span class="coin" style="left:8%;top:62%;animation-delay:0.0s">🐞</span><span class="coin" style="left:78%;top:14%;animation-delay:-0.7s">✅</span><span class="coin" style="left:70%;top:78%;animation-delay:-1.4s">📱</span></div><div class="lvcard"><div class="top"><span class="lv-n">LEVEL 3</span><span class="yr">2023 – 2026</span></div><h3>Assistant Software Engineer</h3><div class="org">Rotation 5, alongside college</div><p>Android and iOS apps, REST APIs, and more than a thousand automated tests. Two and a half years of side quests.</p><div class="unlock"><span>unlocked:</span><i style="--k:0">React Native</i><i style="--k:1">Appium</i><i style="--k:2">Selenium</i><i style="--k:3">TestNG</i><i style="--k:4">Jira</i></div></div></div>
+      <div class="lv R" data-lvl="4"><span class="node"></span><div class="mem" aria-hidden="true"><div class="bigyr">2025</div><div class="mstuff" style="--r:6deg"><figure class="mpol"><span class="tape" style="--tc:rgba(150,170,255,.8);--tr:2deg"></span><img data-ph="techno" alt=""><figcaption>Technoxian, Noida</figcaption></figure><figure class="mpol two"><span class="tape" style="--tc:rgba(255,170,120,.8);--tr:-2deg"></span><img data-ph="debug" alt=""><figcaption>Debugathon: 1st!</figcaption></figure></div><span class="coin" style="left:8%;top:62%;animation-delay:0.0s">🥇</span><span class="coin" style="left:78%;top:14%;animation-delay:-0.7s">🏎️</span><span class="coin" style="left:70%;top:78%;animation-delay:-1.4s">🏆</span></div><div class="lvcard"><div class="top"><span class="lv-n">LEVEL 4</span><span class="yr">2024 – 2025</span></div><h3>Boss fight season</h3><div class="org">Technoxian, NEC, FX Debugathon, AURA</div><p>RC electric car racing at the Technoxian World Cup in Noida, 1st place at the NEC National Symposium, 1st prize at the FX Debugathon, and a 24-hour hackathon at AURA. Plus AICTE's national programme on Java full stack with React and AI.</p><div class="unlock"><span>unlocked:</span><i style="--k:0">3 first prizes</i><i style="--k:1">Hackathon stamina</i><i style="--k:2">Full stack</i></div></div></div>
+      <div class="lv L" data-lvl="5"><span class="node"></span><div class="mem" aria-hidden="true"><div class="bigyr">2026</div><div class="mstuff" style="--r:-5deg"><figure class="mpol"><span class="tape" style="--tc:rgba(255,224,102,.85);--tr:-3deg"></span><img data-ph="drdoid" alt=""><figcaption>officially government-issued!</figcaption></figure></div><span class="coin" style="left:8%;top:62%;animation-delay:0.0s">✈️</span><span class="coin" style="left:78%;top:14%;animation-delay:-0.7s">🪪</span></div><div class="lvcard"><div class="top"><span class="lv-n">LEVEL 5</span><span class="yr">Jun – Jul 2026</span></div><h3>Machine Learning Intern</h3><div class="org">DRDO, ADE Bangalore</div><p>Six weeks building a physics-informed platform for UAV flight performance and mission planning. The biggest build so far.</p><div class="unlock"><span>unlocked:</span><i style="--k:0">FastAPI</i><i style="--k:1">XGBoost</i><i style="--k:2">Uncertainty quantification</i><i style="--k:3">Physics-informed ML</i></div></div></div>
+      <div class="lv R now" data-lvl="6"><span class="node"></span><div class="mem" aria-hidden="true"><div class="bigyr">NOW</div><div class="mstuff" style="--r:4deg"><div class="mnote">AI that answers<br>support calls 📞🤖</div></div><span class="coin" style="left:8%;top:62%;animation-delay:0.0s">⚙️</span><span class="coin" style="left:78%;top:14%;animation-delay:-0.7s">🤖</span></div><div class="lvcard"><div class="top"><span class="lv-n">LEVEL 6, PLAYING NOW</span><span class="yr">Sep 2026 – now</span></div><h3>Automation Engineering Intern</h3><div class="org">Nellai System and Services</div><p>Automating customer support: moving the call and remote-support flow onto an AI voice agent, with Claude for the thinking, Sarvam for natural Indian-language voice and Plivo for the phone calls. I log every day and write it all up in monthly reports.</p><div class="unlock"><span>unlocking:</span><i style="--k:0">Claude API</i><i style="--k:1">Voice AI</i><i style="--k:2">Sarvam</i><i style="--k:3">Plivo</i><i style="--k:4">Automation</i></div></div></div>
+      <div class="lv L next" data-lvl="7"><span class="node"></span><div class="mem" aria-hidden="true"><div class="bigyr">2027</div><div class="mstuff" style="--r:-4deg"><div class="mmyst"><b>?</b><span>your team<br>logo here?</span></div></div><span class="coin" style="left:8%;top:62%;animation-delay:0.0s">🎓</span></div><div class="lvcard"><div class="top"><span class="lv-n">LEVEL 7, LOCKED</span><span class="yr">2027</span></div><h3>Graduate, then the next big level</h3><div class="org">Player 2 wanted</div><p>A full-time role in full-stack or ML. Maybe on your team?</p><div class="unlock"><span>needs:</span><i style="--k:0">You</i></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WINS ================= -->
+<section class="wins" id="wins">
+  <div class="wrap above">
+    <h2 class="sec-title split">Moments I'm proud of</h2>
+    <p class="sec-sub rv">Stages, prizes, hackathons, a government ID I'm very proud of, and one very full bed of trophies. Drag the photos around, they don't mind.</p>
+    <div class="board" id="board">
+      <figure class="polaroid" style="margin:0" data-x="0.01" data-y="0.03" data-r="-5"><span class="tape" style="--tc:rgba(255,224,102,.85);--tr:-3deg"></span><img data-ph="podium" alt="Poster for the Podium 1.0 idea presentation contest, first place to Bettina and Amanda"><figcaption>Podium 1.0: first place!</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.175" data-y="0.03" data-r="4"><span class="tape" style="--tc:rgba(255,140,190,.8);--tr:4deg"></span><img data-ph="m1" alt="Bettina presenting a slide on how carbon capture works at Podium 1.0"><figcaption>my Podium 1.0 pitch</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.34" data-y="0.03" data-r="-3"><span class="tape" style="--tc:rgba(130,230,180,.8);--tr:-5deg"></span><img data-ph="debug" alt="Bettina's first prize certificate from the FX Debugathon C coding challenge"><figcaption>FX Debugathon, 1st prize</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.505" data-y="0.03" data-r="6"><span class="tape" style="--tc:rgba(150,170,255,.8);--tr:2deg"></span><img data-ph="debug2" alt="Bettina receiving her FX Debugathon prize"><figcaption>collecting the Debugathon prize</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.67" data-y="0.03" data-r="-6"><span class="tape" style="--tc:rgba(255,170,120,.8);--tr:-2deg"></span><img data-ph="drdoid" alt="Bettina proudly holding up her DRDO internship ID card"><figcaption>my DRDO intern ID!</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.835" data-y="0.03" data-r="3"><span class="tape" style="--tc:rgba(255,224,102,.85);--tr:-3deg"></span><img data-ph="techno" alt="Bettina with her team on stage at the Technoxian World Cup"><figcaption>Technoxian World Cup, Noida</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.01" data-y="0.5" data-r="4"><span class="tape" style="--tc:rgba(255,140,190,.8);--tr:4deg"></span><img data-ph="m0" alt="Bettina receiving an award on stage at FXEC college day"><figcaption>college day, my face on the big screen!</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.175" data-y="0.5" data-r="-4"><span class="tape" style="--tc:rgba(130,230,180,.8);--tr:-5deg"></span><img data-ph="guest" alt="Bettina with the College Day chief guest, the manager of Food Hub, in the college office"><figcaption>our College Day chief guest!</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.34" data-y="0.5" data-r="5"><span class="tape" style="--tc:rgba(150,170,255,.8);--tr:2deg"></span><img data-ph="aura" alt="Bettina with her team and a trophy at the AURA 24-hour hackathon"><figcaption>AURA 24-hour hackathon</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.505" data-y="0.5" data-r="-2"><span class="tape" style="--tc:rgba(255,170,120,.8);--tr:-2deg"></span><img data-ph="nec" alt="Bettina receiving a certificate at National Engineering College"><figcaption>a certificate at NEC</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.67" data-y="0.5" data-r="7"><span class="tape" style="--tc:rgba(255,224,102,.85);--tr:-3deg"></span><img data-ph="lab" alt="Bettina leading a session in a computer lab"><figcaption>running a lab session</figcaption></figure>
+      <figure class="polaroid" style="margin:0" data-x="0.835" data-y="0.5" data-r="-5"><span class="tape" style="--tc:rgba(255,140,190,.8);--tr:4deg"></span><img data-ph="trophies" alt="A bed covered in Bettina's trophies and certificates"><figcaption>the trophy pile so far</figcaption></figure>
+      <span class="board-hint">psst, drag them</span>
+    </div>
+    <div class="win-list">
+      <div class="win rv" style="--d:0.0s"><div class="big">1st</div><h3>FX Debugathon</h3><p>First prize in the C coding challenge for second-year students, January 2025.</p></div>
+      <div class="win rv" style="--d:0.08s"><div class="big">1st</div><h3>Podium 1.0 idea contest</h3><p>First place in Environment and Sustainability as a first-year, with Amanda Ketzi Shobitha K.</p></div>
+      <div class="win rv" style="--d:0.16s"><div class="big">1st</div><h3>NEC National Symposium</h3><p>Pitched a back-end architecture to a national technical panel, and it won.</p></div>
+      <div class="win rv" style="--d:0.0s"><div class="big">Rank 1</div><h3>26th College Day</h3><p>First rank in my class.</p></div>
+      <div class="win rv" style="--d:0.08s"><div class="big">Rank 2</div><h3>25th College Day</h3><p>Second rank in my class, the year before.</p></div>
+      <div class="win rv" style="--d:0.16s"><div class="big">2×</div><h3>Buddy Professional Award</h3><p>At both the 25th and 26th College Days.</p></div>
+      <div class="win rv" style="--d:0.0s"><div class="big">★</div><h3>Outstanding Performer</h3><p>My first-year award at the 24th College Day.</p></div>
+      <div class="win rv" style="--d:0.08s"><div class="big">2×</div><h3>Cultural fest first prizes</h3><p>First prize, twice, at FXEC's inter-departmental cultural fest.</p></div>
+      <div class="win rv" style="--d:0.16s"><div class="big">2024</div><h3>Technoxian World Cup, Noida</h3><p>RC electric car racing at the world's biggest robotics championship.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TOOLBOX ================= -->
+<section class="tools" id="toolbox">
+  <div class="wrap above">
+    <div class="tools-top">
+      <div>
+        <h2 class="sec-title split">My toolbox</h2>
+        <p class="sec-sub rv">Everything I build with, in one box. Grab a logo and throw it, or shake the whole thing.</p>
+      </div>
+      <button class="btn mag" id="shake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 8c2-3 5-3 7 0s5 3 7 0M4 16c2-3 5-3 7 0s5 3 7 0"/></svg>Shake the box</button>
+    </div>
+    <div class="arena" id="arena"><span class="arena-label">bigger bubble = I use it more</span></div>
+  </div>
+</section>
+
+<!-- ================= CERTS ================= -->
+<section class="certs" id="certs">
+  <div class="wrap above">
+    <h2 class="sec-title split">28 certificates later</h2>
+    <p class="sec-sub rv">I collect courses the way some people collect stickers. Here are the shiny ones, then the whole collection rolling by. Hover to pause it.</p>
+    <div class="medals" id="medals"></div>
+    <div class="tally rv" id="tally"></div>
+  </div>
+  <div class="belt" id="belt"><div class="row" data-dir="1"></div><div class="row" data-dir="-1"></div></div>
+  <div class="wrap above">
+    <button class="btn toggle mag" id="certToggle">Show them as a list</button>
+    <div class="all-certs" id="allCerts"></div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact">
+  <div class="wrap above">
+    <div class="hi-row"><div class="big" id="bigHi" aria-label="Say hi"><span class="lt" style="--i:0">S</span><span class="lt" style="--i:1">a</span><span class="lt" style="--i:2">y</span> <span class="lt" style="--i:3">h</span><span class="lt" style="--i:4">i</span> <span class="wave">👋</span></div>
+    <div class="spinner" aria-hidden="true"><svg viewBox="0 0 200 200"><defs><path id="circ" d="M100,100 m-80,0 a80,80 0 1,1 160,0 a80,80 0 1,1 -160,0"/></defs><text><textPath href="#circ" textLength="500">open to work from 2027 ✦ say hi ✦ open to work from 2027 ✦ say hi ✦</textPath></text></svg><svg class="mid" viewBox="0 0 34 30"><g class="wl"><path d="M17 14 C 12 2, 1 1, 2 9 C 3 14, 10 15, 17 15 C 10 16, 4 21, 7 26 C 10 30, 16 23, 17 17Z" fill="#7389FF"/></g><g class="wr"><path d="M17 14 C 22 2, 33 1, 32 9 C 31 14, 24 15, 17 15 C 24 16, 30 21, 27 26 C 24 30, 18 23, 17 17Z" fill="#20C46B"/></g><rect x="16" y="9" width="2" height="13" rx="1" fill="#EDECE8"/></svg></div></div>
+    <div class="scribble"><span>let's make something people want to play with</span><svg viewBox="0 0 400 20" preserveAspectRatio="none"><path d="M2 12 C 60 2, 110 20, 170 10 S 280 2, 330 12 S 380 16, 398 8" fill="none" stroke="#FFC93C" stroke-width="4" stroke-linecap="round"/></svg></div>
+    <p class="note rv">I graduate in 2027 and I'm looking for roles and internships in full-stack and ML. Got a project, a question, or just want to talk about UAVs? Pick a reason and write me a note.</p>
+    <div class="c-grid">
+      <form class="composer rv" id="composer" novalidate>
+        <h3>Write me a note</h3>
+        <div class="q">what's this about?</div>
+        <div class="chips" id="reason"><button type="button" class="on">A job opening</button><button type="button">An internship</button><button type="button">A project idea</button><button type="button">Just saying hi</button></div>
+        <div class="field"><label for="fname">Your name</label><input id="fname" autocomplete="name" placeholder="So I know who to thank"></div>
+        <div class="field"><label for="fmsg">Your message</label><textarea id="fmsg" placeholder="Tell me what you're building..."></textarea></div>
+        <div class="send"><button class="btn mag" type="submit"><svg class="plane" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>Send it</button><small>Opens your email app with everything filled in.</small></div>
+      </form>
+      <div class="c-side">
+        <a class="ccard rv install-btn" href="#" data-cursor="Install"><span class="ic" style="background:#FFC93C"><svg viewBox="0 0 24 24" fill="none" stroke="#1C1A10" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M12 7v7M9 11l3 3 3-3"/></svg></span><span><b>Install my portfolio as an app</b><small>Works offline, lives on your home screen</small></span></a>
+        <a class="ccard resume rv resume-dl" href="#" data-cursor="Download"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M6 10l6 6 6-6M4 21h16"/></svg></span><span><b>Download my résumé</b><small>One page, PDF</small></span></a>
+        <button class="ccard rv" id="copyMail" type="button" style="--d:.05s" data-cursor="Copy"><span class="ic" style="background:#EA4335"><svg viewBox="0 0 24 24"><path fill="#fff" d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg></span><span><b>bettyliz1808@gmail.com</b><small>Click to copy</small></span></button>
+        <a class="ccard rv" style="--d:.1s" href="https://linkedin.com/in/bettina-anne-sam-76251b288" target="_blank" rel="noopener"><span class="ic" style="background:#0A66C2"><svg viewBox="0 0 24 24"><path fill="#fff" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></span><span><b>LinkedIn</b><small>Bettina Anne Sam</small></span></a>
+        <a class="ccard rv" style="--d:.15s" href="https://github.com/Bettina-Sam" target="_blank" rel="noopener"><span class="ic" style="background:#EDECE8"><svg viewBox="0 0 24 24"><path fill="#16181D" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg></span><span><b>GitHub</b><small>Bettina-Sam</small></span></a>
+        <a class="ccard rv" style="--d:.2s" href="tel:+917418415133"><span class="ic" style="background:#20C46B"><svg viewBox="0 0 24 24" fill="none" stroke="#06210F" stroke-width="2.2" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></svg></span><span><b>+91 74184 15133</b><small>For when email is too slow</small></span></a>
+        <div class="visitbox rv vis-hide" style="--d:.25s" data-visits-pill><small><span class="live-dot"></span>people who've visited so far</small><div class="n" data-visits>0</div></div>
+      </div>
+    </div>
+    <div class="foot"><span>© 2026 Bettina Anne Sam</span><button class="dontpress" id="gravBtn" type="button">🚫 don't press this</button><span>Thanks for scrolling all the way down.</span></div>
+  </div>
+</section>
+
+<nav class="dock" aria-label="Sections">
+  <a href="#top" data-s="top" class="logo-link" aria-label="Back to top"><svg class="logo" aria-hidden="true" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="96" height="96" rx="24" fill="#2340FF"/><path fill="#fff" fill-rule="evenodd" d="M24 20 H54 C68 20 76 28 76 39 C76 46 72.5 51 67 53.5 C75 56 80.5 63 80.5 72 C80.5 85 71 92 56 92 H24 Z M38 32 H52 C58.5 32 62 35 62 39.8 C62 44.6 58.5 47.5 52 47.5 H38 Z M38 59 H54 C62 59 66.5 62.6 66.5 68.6 C66.5 74.8 62 78.5 54 78.5 H38 Z"/><g transform="translate(64 6) rotate(-18) scale(.72)"><path d="M0 3 L40 15 L13 17 Z" fill="#FFC93C"/><path d="M13 17 L40 15 L9 27 Z" fill="#E0A814"/></g></svg></a>
+  <a href="#about" data-s="about">About</a>
+  <a href="#work" data-s="work">Work</a>
+  <a href="#journey" data-s="journey" class="opt">Journey</a>
+  <a href="#wins" data-s="wins" class="opt">Wins</a>
+  <a href="#contact" data-s="contact">Say hi</a>
+  <button id="themeBtn" class="opt-theme" aria-label="Switch colour theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2M12 19.5v2M4.6 4.6l1.4 1.4M18 18l1.4 1.4M2.5 12h2M19.5 12h2M4.6 19.4L6 18M18 6l1.4-1.4"/></svg></button>
+</nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/icons.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
